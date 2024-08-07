@@ -52,7 +52,7 @@ store.on("error" ,()=>{
 // Express session setup
 app.use(session({
     store,
-    secret: process.env>SECRET,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
