@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div id="alert" class="alert alert-danger col-6 offset-3" role="alert">
+        <div class="alert-heading"><%= err.message %></div>
+    </div>
+</div>
+
+<script>
+    // Function to hide the alert after a delay
+    function hideAlert() {
+        const alertElement = document.getElementById('alert');
+        if (alertElement) {
+            setTimeout(() => {
+                alertElement.style.opacity = 0;
+                // Optional: Remove element from DOM after fading out
+                setTimeout(() => {
+                    alertElement.remove();
+                }, 500); // Adjust based on fade-out duration
+            }, 2000); // Delay before hiding the alert
+        }
+    }
+
+    // Execute hideAlert function when the page loads
+    document.addEventListener('DOMContentLoaded', hideAlert);
+</script>

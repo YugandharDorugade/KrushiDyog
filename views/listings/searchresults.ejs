@@ -1,0 +1,97 @@
+<% layout("/layouts/boilerplate") %>
+
+<% if (listings.length > 0) { %>
+    <!-- Filter Section -->
+    <div class="filter-dropdown position-relative mb-3">
+        <button class="btn btn-secondary" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Filters
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdownButton">
+            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="price_low_to_high">Price: Low to High</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="price_high_to_low">Price: High to Low</a></li>
+            <!-- Add more filter options as needed -->
+        </ul>
+    </div>
+
+    <div class="row" id="listingContainer">
+        <% listings.forEach(listing => { %>
+            <div class="col-md-4 mb-4 listing-item" data-price="<%= listing.price %>">
+                <a href="/listings/<%= listing._id %>">
+                    <div class="card">
+                        <div id="carousel<%= listing._id %>" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <% if (listing.images && listing.images.length > 0) { %>
+                                    <% listing.images.forEach((image, index) => { %>
+                                        <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                            <img src="<%= image.url %>" class="d-block" style="height: 250px; width: 400px;" alt="listing_image">
+                                        </div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div class="carousel-item active">
+                                        <img src="https://via.placeholder.com/400x250" class="d-block" style="height: 250px; width: 400px;" alt="default_image">
+                                    </div>
+                                <% } %>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= listing._id %>" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= listing._id %>" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= listing.title %></h5>
+                        <p class="card-text">Price: &#8377;<%= listing.price.toLocaleString("en-IN") %></p>
+                        <p class="card-text">Description: <%= listing.description %></p>
+                        <p class="card-text">Weight: <%= listing.weight %> KG</p>
+                        <p class="card-text">Origin: <%= listing.origin %></p>
+                        <p class="card-text">Owner: <%= listing.owner.username %></p>
+                        <a href="/listings/<%= listing._id %>" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } else { %>
+    <p>No results found.</p>
+<% } %>
+
+<script>
+    // Store initial listings
+    const originalListings = Array.from(document.querySelectorAll('.listing-item'));
+    const listingContainer = document.getElementById('listingContainer');
+
+    const filterDropdownItems = document.querySelectorAll('.filter-dropdown .dropdown-item');
+
+    filterDropdownItems.forEach(item => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            const selectedFilter = item.getAttribute('data-filter');
+
+            // Reset the view
+            listingContainer.innerHTML = '';
+
+            let filteredListings;
+
+            // Filter the listings based on the selected filter
+            if (selectedFilter === 'price_low_to_high') {
+                filteredListings = [...originalListings].sort((a, b) => {
+                    return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+                });
+            } else if (selectedFilter === 'price_high_to_low') {
+                filteredListings = [...originalListings].sort((a, b) => {
+                    return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+                });
+            } else {
+                filteredListings = originalListings; // Show all
+            }
+
+            // Append the filtered listings back to the container
+            filteredListings.forEach(listing => listingContainer.appendChild(listing));
+        });
+    });
+</script>

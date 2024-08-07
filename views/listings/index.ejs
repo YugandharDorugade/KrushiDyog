@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+<%- include('../includes/categories.ejs') %>
+<body>
+
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for (let listing of allListings) { %>
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card col">
+                    <div id="carousel<%= listing._id %>" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <% if (listing.images && listing.images.length > 0) { %>
+                                <% for (let i = 0; i < listing.images.length; i++) { %>
+                                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                                        <img src="<%= listing.images[i].url %>" class="d-block w-100" alt="listing_image" style="height: 20rem;">
+                                    </div>
+                                <% } %>
+                            <% } else { %>
+                                <div class="carousel-item active">
+                                    <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="default_image" style="height: 20rem;">
+                                </div>
+                            <% } %>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= listing._id %>" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= listing._id %>" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= listing.title %>
+                            <br><br>
+                            &#8377;<%= listing.price.toLocaleString("en-IN") %> /5KG<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+</body>

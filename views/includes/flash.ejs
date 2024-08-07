@@ -1,0 +1,30 @@
+<% if (success && success.length) { %>
+    <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+<% } %>
+
+<% if (error && error.length) { %>
+    <div id="error-alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+<% } %>
+
+
+
+
+<style>
+    /* flash sms  */
+.alert {
+    position: fixed;
+    top: 4px; /* Adjust based on your navbar height */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    width: 25%; /* Adjust as needed */
+}
+</style>

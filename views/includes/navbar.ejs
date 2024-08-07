@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/root">
+      <i class="fa-solid fa-wheat-awn"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/home">Home</a>
+        <a class="nav-link" href="/listings">Our Products</a>
+      </div>
+
+      <div class="d-flex flex-grow-1 justify-content-center align-items-center mx-3">
+        <form class="d-flex align-items-center" action="/search" method="GET">
+          <input class="form-control me-2 rounded-pill border-success search-container" 
+          type="text" placeholder="Search products..." aria-label="Search" name="title">
+          <button class="btn btn-outline-success" type="submit">
+            <i class="fa-solid fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Us Link -->
+      <div class="navbar-nav ms-auto d-flex align-items-center">
+        <a class="nav-link" href="/contact">Contact Us</a> <!-- Added Contact Us link here -->
+        <% if (curruser) { %>
+          <a class="nav-link" href="/cart/showcart">
+            <i class="fa-solid fa-shopping-cart"></i>
+          </a>
+        <% } else { %>
+          <a class="nav-link" href="/login">
+            <i class="fa-solid fa-shopping-cart"></i>
+          </a>
+        <% } %>
+      </div>
+
+      <% if (curruser) { %>
+        <a class="nav-link" href="/wishlist/showwishlist">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+      <% } else { %>
+        <a class="nav-link" href="/login">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+      <% } %>
+
+      <!-- Dropdown for unauthenticated users -->
+      <% if (!curruser) { %>
+        <div class="dropdown position-relative fixed-top">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-list"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="/signup">SignUp</a></li>
+            <li><a class="dropdown-item" href="/login">LogIn</a></li>
+          </ul>
+        </div>
+      <% } %>
+
+      <!-- Dropdown for authenticated users -->
+      <% if (curruser) { %>
+        <div class="dropdown position-relative fixed-top">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="/listings/new">Add your Products</a></li>
+            <li><a class="dropdown-item" href="/logout">LogOut</a></li>
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+          </ul>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</nav>

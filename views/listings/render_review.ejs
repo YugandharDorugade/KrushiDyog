@@ -1,0 +1,37 @@
+<div class="render-reviews">
+    <% if (!curruser) { %>
+        <div class="review">
+            <h4>
+                <a href="/login" class="btn btn-success">Leave your review</a>
+            </h4>
+        </div>
+    <% } %>
+    <h3> Our Customer Reviews</h3>
+    <div class="row">
+        <% for (let review of listing.reviews) { %>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="review-rating">
+                            <% for (let i = 0; i < review.rating; i++) { %>
+                                <span class="fa fa-star checked"></span>
+                            <% } %>
+                            <% for (let i = review.rating; i < 5; i++) { %>
+                                <span class="fa fa-star unchecked"></span>
+                            <% } %>
+                        </div>
+                        <p class="card-text"><%= review.comment %></p>
+                        <p class="card-text">@<%= review.author.username %></p>
+                        <% if (curruser && curruser._id.equals(review.author._id)) { %>
+                            <div class="deletebtn">
+                                <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>

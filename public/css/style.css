@@ -1,0 +1,28 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+
+
+}
+.container{
+    flex: 1;
+
+}
+
+
+
+
+
+/* flash sms  */
+.alert {
+    position: fixed;
+    top: 4px; /* Adjust based on your navbar height */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    width: 25%; /* Adjust as needed */
+}
+
+

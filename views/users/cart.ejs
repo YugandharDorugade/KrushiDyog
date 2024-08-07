@@ -1,0 +1,122 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    .cart-container {
+        max-width: 800px; 
+        margin: auto; 
+        padding: 20px; 
+        border: 2px solid black;
+        max-height: 400px; 
+        overflow-y: auto; 
+    }
+
+    .cart-item {
+        display: flex; 
+        align-items: center; 
+        border: 1px solid #dee2e6; 
+        border-radius: 0.25rem; 
+        padding: 15px; 
+        margin-bottom: 20px; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    }
+
+    .cart-item img {
+        width: 70px; 
+        height: auto; 
+        margin-right: 20px; 
+    }
+
+    .cart-item-details {
+        flex-grow: 1; 
+    }
+
+    .cart-item h5 {
+        margin: 0; 
+        font-size: 18px; 
+    }
+
+    .cart-item p {
+        margin: 5px 0; 
+    }
+
+    .cart-item-actions {
+        display: flex; 
+        flex-direction: column; 
+        align-items: flex-end; 
+    }
+
+    .btn {
+        margin-top: 10px; 
+    }
+
+    .grand-total {
+        text-align: right; 
+        font-size: 20px; 
+        margin-top: 20px; 
+    }
+
+    .notice {
+        color: red; 
+        font-weight: bold; 
+    }
+</style>
+
+<div class="cart-container">
+    <h2 class="text-center mb-4">Shopping Cart</h2>
+
+    <% if (cart && cart.items.length > 0) { %>
+
+        <% cart.items.forEach(item => { %> 
+            <div class="cart-item">
+                <% if (item.listingId) { %>
+                    <% if (item.listingId.images && item.listingId.images.length > 0) { %>
+                        <img src="<%= item.listingId.images[0].url %>" alt="<%= item.listingId.title %>">
+                    <% } else { %>
+                        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Frice&psig=AOvVaw05cFqCzn573HyXW2yEMsG-&ust=1723053681953000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKj32ar54IcDFQAAAAAdAAAAABAE" alt="Default Image">
+                    <% } %>
+                    <div class="cart-item-details">
+                        <h5><%= item.listingId.title %></h5>
+                        <p>Quantity: <%= item.quantity %></p>
+                        <p>Price per Item: $<%= item.price %></p>
+                        <p>Total Price: $<%= item.totalPrice %></p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <form action="/cart/addQuantity" method="POST" style="display: inline;">
+                            <input type="number" name="quantity" min="1" value="<%= item.quantity %>" required>
+                            <input type="hidden" name="listingId" value="<%= item.listingId._id %>">
+                            <button class="btn btn-primary" type="submit">Add Quantity</button>
+                        </form>
+                        <form action="/cart/remove" method="POST" style="display: inline;">
+                            <input type="hidden" name="listingId" value="<%= item.listingId._id %>">
+                            <button class="btn btn-danger" type="submit">Remove from Cart</button>
+                        </form>
+                        <form action="/cart/confirm" method="POST" style="display: inline;">
+                            <input type="hidden" name="listingId" value="<%= item.listingId._id %>">
+                            <button class="btn btn-danger" type="submit">Confirm Order</button>
+                        </form>
+                    </div>
+                <% } else { %>
+                    <div class="cart-item-details">
+                        <h5 class="notice">Product not available (may be out of stock)</h5>
+
+                    </div>
+                <% } %>
+            </div>
+        <% }); %>
+
+        <div class="grand-total">
+            <strong>Grand Total: $<%= cart.grandTotal %></strong>
+        </div>
+
+        <div class="text-right">
+            <form action="/cart/deletecart" method="POST" style="display: inline;">
+                <button class="btn btn-danger" type="submit">Delete Cart</button>
+            </form>
+            <form action="/cart/confirmCart" method="POST" style="display: inline;">
+                <button class="btn btn-success" type="submit">Confirm Order for Entire Cart</button>
+            </form>
+        </div>
+    <% } else { %>
+        <p class="text-center">Your cart is empty.</p>
+    <% } %>
+</div>

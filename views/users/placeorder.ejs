@@ -1,0 +1,130 @@
+<% layout("/layouts/boilerplate") %>
+<h2>Place Your Order for <%= item.title %></h2>
+
+<div id="product-details" class="product-details">
+    <h3 id="product-name"><%= item.title %></h3>
+    <p>Price: <span id="product-price"><%= price %></span></p>
+    <p>Quantity: <span id="product-quantity"><%= quantity %></span></p>
+    <p>Total Price: <span id="total-price"><%= totalPrice %></span></p>
+</div>
+
+<h3>Delivery Information</h3>
+<form action="/cart/placeOrder" method="POST" class="order-form">
+    <input type="hidden" name="listingId" value="<%= item._id %>"> <!-- Hidden input for listingId -->
+
+    <div class="address-fields">
+        <div class="field-container">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required class="form-input" />
+        </div>
+        
+        <div class="field-container">
+            <label for="district">District/City:</label>
+            <input type="text" id="district" name="district" required class="form-input" />
+        </div>
+
+        <div class="field-container">
+            <label for="taluka">Taluka:</label>
+            <input type="text" id="taluka" name="taluka" required class="form-input" />
+        </div>
+    </div>
+
+    <div class="field-container">
+        <label for="building">Building/Flat Name:</label>
+        <input type="text" id="building" name="building" required class="form-input" />
+    </div>
+
+    <div class="field-container">
+        <label for="pin">PIN Code:</label>
+        <input type="text" id="pin" name="pin" required class="form-input" />
+    </div>
+
+    <div class="field-container">
+        <label for="phone">Mobile Number:</label>
+        <input type="tel" id="phone" name="phone" required class="form-input" />
+    </div>
+
+    <h3>Payment Options</h3>
+    <div class="payment-options">
+        <label>
+            <input type="radio" name="paymentMethod" value="COD" required /> Cash on Delivery
+        </label>
+        <label>
+            <input type="radio" name="paymentMethod" value="netBanking" required /> Net Banking
+        </label>
+        <label>
+            <input type="radio" name="paymentMethod" value="upi" required /> UPI
+        </label>
+        <label>
+            <input type="radio" name="paymentMethod" value="card" required /> Card
+        </label>
+    </div>
+
+    <button type="submit" class="submit-button">Submit Order</button>
+</form>
+
+<!-- CSS Styles -->
+<style>
+    .product-details {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .order-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Spacing between elements */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+    }
+
+    .form-input:focus {
+        border-color: #007bff;
+        outline: none; /* Remove default outline */
+    }
+
+    .address-fields {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px; /* Spacing between address fields */
+    }
+
+    .field-container {
+        flex: 1 1 30%; /* Adjusts width to fit in a row */
+    }
+
+    .payment-options {
+        margin: 10px 0;
+    }
+
+    .submit-button {
+        padding: 15px 25px;
+        background-color: #28a745; /* Bootstrap success color */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .submit-button:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+</style>

@@ -1,0 +1,96 @@
+<% layout("/layouts/boilerplate") %>
+<h3>Edit Product Details</h3>
+<div class="row">
+    <div class="col-8 offset-0.5">
+        <form action="/listings/<%= listing._id %>?_method=PUT" method="post" enctype="multipart/form-data" novalidate class="needs-validation">
+
+            <!-- Existing product details fields -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Product Title</label>
+                <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Product Description</label>
+                <textarea name="listing[description]" id="description" cols="20" rows="5" class="form-control"><%= listing.description %></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="weight" class="form-label">Product Weight</label>
+                <input type="number" name="listing[weight]" value="<%= listing.weight %>" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Product Price</label>
+                <input type="number" name="listing[price]" value="<%= listing.price %>" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="origin" class="form-label">Product Origin</label>
+                <input type="text" name="listing[origin]" value="<%= listing.origin %>" class="form-control">
+            </div>
+
+            <!-- Upload new images -->
+            <div class="mb-3">
+                <label for="images" class="form-label">Upload New Images (Optional)</label>
+                <input type="file" name="listing[images]" class="form-control" multiple>
+            </div>
+
+            <!-- Display existing images -->
+            <div class="mb-3">
+                <label class="form-label"><b>Delete Old</b></label>
+                <div class="d-flex flex-wrap">
+                    <% if (listing.images && listing.images.length > 0) { %>
+                        <% listing.images.forEach((image, index) => { %>
+                            <div class="me-2 mb-2 image-wrapper">
+                                <img src="<%= image.url %>" alt="Product Image" class="img-thumbnail custom-image">
+                                <div class="mt-1">
+                                    <input type="checkbox" name="deleteImages[]" value="<%= image._id %>" class="custom-checkbox">
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>No images available.</p>
+                    <% } %>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" id="addbtn">Save</button><br><br>
+        </form>
+    </div>
+</div>
+
+
+    <style>
+
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 5px; /* Space between the image and the border */
+            background-color: transparent; /* Ensures the border color is visible */
+        }
+        
+        
+        .custom-image {
+            width: 150px; /* Set width of the image */
+            height: 150px; /* Set height of the image */
+            border: 3px solid green; /* Greenish border */
+            border-radius: 4px; /* Optional: rounds the corners of the border */
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
+        
+        .custom-checkbox {
+            width: 20px; /* Adjust size as needed */
+            height: 20px; /* Adjust size as needed */
+            accent-color: red; /* Change the color when checked */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+        
+        /* Additional styling to handle color change when checked */
+        .custom-checkbox:checked {
+            background-color: red; /* Change the background color when checked */
+            border-color: red; /* Change the border color when checked */
+        }
+        
+        
+</style>

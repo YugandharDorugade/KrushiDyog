@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    .wishlist-container {
+        max-width: 1000px; 
+        margin: 10px 10px; 
+        padding: 20px; 
+    }
+
+    .wishlist-title {
+        font-weight: bold;
+        margin-bottom: 20px; 
+        text-align: center; 
+    }
+
+    .wishlist-card {
+        border: 1px solid #dee2e6; 
+        border-radius: 0.25rem; 
+        padding: 15px; 
+        margin: 10px; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        text-align: center; 
+        flex: 1 0 30%; 
+    }
+
+    .wishlist-card img {
+        width: 200px; 
+        height: 150px; 
+        margin-bottom: 10px; 
+    }
+
+    .wishlist-card-actions .btn {
+        margin-top: 10px; 
+    }
+
+    .wishlist-card-container {
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        max-height: 400px; /* Set maximum height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+</style>
+
+<div class="wishlist-container">
+    <h4 class="wishlist-title">Your Wishlist</h4>
+    <div class="wishlist-card-container">
+        <% if (wishlist && wishlist.products && Array.isArray(wishlist.products) && wishlist.products.length > 0) { %>
+            <% wishlist.products.forEach(product => { %>
+                <div class="wishlist-card">
+                    <% if (product.product) { %>
+                        <img src="<%= product.product.images && product.product.images.length > 0 ? product.product.images[0].url : 'path/to/default/image.jpg' %>" alt="<%= product.product.title %>"> 
+                        <h5><%= product.product.title %></h5> 
+                        <div class="wishlist-card-actions">
+                            <form action="/cart/add" method="POST">
+                                <input type="hidden" name="listingId" value="<%= product.product._id %>">
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                            <form action="/wishlist/remove" method="POST">
+                                <input type="hidden" name="listingId" value="<%= product.product._id %>">
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </div>
+                    <% } else { %>
+                        <p>Product not found.</p>
+                    <% } %>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="empty-message">Your wishlist is empty.</p>
+        <% } %>
+    </div>
+</div>

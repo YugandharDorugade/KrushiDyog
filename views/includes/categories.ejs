@@ -1,0 +1,189 @@
+
+<div class="categories">
+    
+    <div class="category-carousel">
+        <div class="categories-wrapper">
+            <div class="category" data-category="Grains">
+                <div class="icon">
+                    <i class="fa-solid fa-wheat-awn"></i> <!-- Grains -->
+                </div>
+                <p>Grains</p>
+            </div>
+            <div class="category" data-category="Spices">
+                <div class="icon">
+                    <i class="fa-solid fa-pepper-hot" style="color:rgb(249, 70, 70)"></i> <!-- Spices -->
+                </div>
+                <p>Spices</p>
+            </div>
+            <div class="category" data-category="Dairy">
+                <div class="icon">
+                    <i class="fa-solid fa-cookie-bite"></i> <!-- Dairy -->
+                </div>
+                <p>Dairy</p>
+            </div>
+            <div class="category" data-category="Organic Cosmetics">
+                <div class="icon">
+                    <i class="fa-solid fa-spray-can"></i> <!-- Organic Cosmetics -->
+                </div>
+                <p>Organic Cosmetics</p>
+            </div>
+            <div class="category" data-category="Fruits">
+                <div class="icon">
+                    <i class="fa-solid fa-apple-alt"></i> <!-- Fruits -->
+                </div>
+                <p>Fruits</p>
+            </div>
+            <div class="category" data-category="Vegetables">
+                <div class="icon">
+                    <i class="fa-solid fa-carrot"></i> <!-- Vegetables -->
+                </div>
+                <p>Vegetables</p>
+            </div>
+            <div class="category" data-category="Trending">
+                <div class="icon">
+                    <i class="fa-solid fa-fire"></i> <!-- Trending -->
+                </div>
+                <p>Trending</p>
+            </div>
+            <div class="category" data-category="Seasonal">
+                <div class="icon">
+                    <i class="fa-solid fa-calendar-alt"></i> <!-- Seasonal -->
+                </div>
+                <p>Seasonal</p>
+            </div>
+            <div class="category" data-category="Organic">
+                <div class="icon">
+                    <i class="fa-solid fa-seedling"></i> <!-- Organic -->
+                </div>
+                <p>Organic</p>
+            </div>
+            <div class="category" data-category="Cooking">
+                <div class="icon">
+                    <i class="fa-solid fa-utensils"></i> <!-- Cooking -->
+                </div>
+                <p>Cooking</p>
+            </div>
+            <div class="category" data-category="Grains">
+                <div class="icon">
+                    <i class="fa-solid fa-wheat-awn"></i> <!-- Grains -->
+                </div>
+                <p>Grains</p>
+            </div>
+            <div class="category" data-category="Spices">
+                <div class="icon">
+                    <i class="fa-solid fa-pepper-hot" style="color:rgb(249, 70, 70)"></i> <!-- Spices -->
+                </div>
+                <p>Spices</p>
+            </div>
+            <div class="category" data-category="Dairy">
+                <div class="icon">
+                    <i class="fa-solid fa-cookie-bite"></i> <!-- Dairy -->
+                </div>
+                <p>Dairy</p>
+            </div>
+            <div class="category" data-category="Organic Cosmetics">
+                <div class="icon">
+                    <i class="fa-solid fa-spray-can"></i> <!-- Organic Cosmetics -->
+                </div>
+                <p>Organic Cosmetics</p>
+            </div>
+            <div class="category" data-category="Fruits">
+                <div class="icon">
+                    <i class="fa-solid fa-apple-alt"></i> <!-- Fruits -->
+                </div>
+                <p>Fruits</p>
+            </div>
+            <div class="category" data-category="Vegetables">
+                <div class="icon">
+                    <i class="fa-solid fa-carrot"></i> <!-- Vegetables -->
+                </div>
+                <p>Vegetables</p>
+            </div>
+            <div class="category" data-category="Trending">
+                <div class="icon">
+                    <i class="fa-solid fa-fire"></i> <!-- Trending -->
+                </div>
+                <p>Trending</p>
+            </div>
+            <div class="category" data-category="Seasonal">
+                <div class="icon">
+                    <i class="fa-solid fa-calendar-alt"></i> <!-- Seasonal -->
+                </div>
+                <p>Seasonal</p>
+            </div>
+            <div class="category" data-category="Organic">
+                <div class="icon">
+                    <i class="fa-solid fa-seedling"></i> <!-- Organic -->
+                </div>
+                <p>Organic</p>
+            </div>
+            <div class="category" data-category="Cooking">
+                <div class="icon">
+                    <i class="fa-solid fa-utensils"></i> <!-- Cooking -->
+                </div>
+                <p>Cooking</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<style>
+    .categories {
+        display: flex;
+        align-items: flex-start; /* Aligns items to the start */
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        overflow-x: auto;
+        white-space: nowrap;
+
+    }
+
+    
+
+    .category-carousel {
+        display: flex;
+        flex-grow: 1;
+        overflow-x: auto; /* Ensure categories can scroll */
+    }
+
+    .categories-wrapper {
+        display: inline-flex;
+    }
+
+    .category {
+        text-align: center;
+        margin: 0 1rem;
+        transition: transform 0.2s;
+        cursor: pointer; /* Change cursor to pointer */
+    }
+
+    .category:hover {
+        transform: scale(1.1);
+    }
+
+    .icon {
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+        color: #28a745; /* Change icon color (green) */
+    }
+
+    .card {
+        border: none;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.category').forEach(item => {
+        item.addEventListener('click', () => {
+            const selectedCategory = item.getAttribute('data-category');
+            window.location.href = `/search?category=${selectedCategory}`; // Redirect to the search page with selected category
+        });
+    });
+
+
+</script>

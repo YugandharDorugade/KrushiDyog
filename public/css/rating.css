@@ -1,0 +1,69 @@
+/* reviews on show.ejs */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.star {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star:hover,
+.star:hover ~ .star,
+.star.selected {
+  color: gold;
+}
+
+.fa-star {
+  font-size: 20px;
+  color: gold;
+}
+
+.unchecked {
+  color: #d3d3d3;
+}
+
+.star-rating .star.selected {
+  color: gold;
+}
+
+/* show.ejs */
+.show-img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+
+.carousel-inner {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text {
+  font-weight: 600 !important;
+}
+
+.listing-link {
+  text-decoration: none !important;
+}
+
+#addbtn {
+  background-color: rgb(57, 142, 57);
+  color: white;
+  border: none !important;
+  border-radius: 10px;
+}

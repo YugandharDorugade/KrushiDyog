@@ -1,0 +1,240 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  body {
+    background: url('/pexels-photo-807598.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .landing-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    position: relative;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+  }
+
+  .landing-section img {
+    width: 400px;
+    height: 280px;
+    object-fit: cover;
+    margin: 20px;
+    border-radius: 1rem;
+  }
+
+  .text-container {
+    max-width: 50%;
+  }
+
+  .text-container h1 {
+    font-size: 3rem;
+  }
+
+  .text-container h2 {
+    font-size: 2.5rem;
+  }
+
+  .text-container h3 {
+    font-size: 2rem;
+  }
+
+  /* Add styles for the horizontal scrollable section */
+  .scrollable-section {
+    padding: 20px;
+    text-align: center; /* Center the title */
+  }
+
+  .scrollable-section h2 {
+    margin-bottom: 10px;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    padding: 10px 0; /* Space around cards */
+    gap: 100px; /* Space between cards */
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px; /* Padding inside cards */
+    text-align: center;
+    flex: 0 0 auto; /* Prevents cards from shrinking */
+    width: 200px; /* Set card width */
+    font-size: large;
+    font-weight: 900;
+  }
+
+  .card img {
+    width: 100%; /* Responsive image within the card */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+  }
+
+  .card-name {
+    margin-top: 5px; /* Space between image and name */
+    font-weight: bold; /* Bold text for names */
+  }
+</style>
+
+<!-- First Section -->
+<div class="landing-section">
+  <div class="text-container glass">
+    <h1>Welcome to Our KrushiDyog</h1>
+    <h2>Your One-Stop Shop for Quality Products</h2>
+    <h3>Discover the best deals and offers!</h3>
+  </div>
+  <img src="/p2-1024x962.png" alt="Welcome Image">
+</div>
+
+<!-- Second Section -->
+<div class="landing-section">
+  <img src="/p2-1024x962.png" alt="Welcome Image">
+  <div class="text-container glass">
+    <h2>Why KrushiDyog ?</h2>
+    <p>We offer a wide range of high-quality products at unbeatable prices. Our dedicated team ensures that you have the best shopping experience. Join our community and enjoy exclusive offers!</p>
+  </div>
+</div>
+
+<!-- Range of Grains Section -->
+<div class="scrollable-section">
+  <h2>Range of Grains</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 1">
+      <div class="card-name">Grain 1</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 2">
+      <div class="card-name">Grain 2</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 3">
+      <div class="card-name">Grain 3</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 4">
+      <div class="card-name">Grain 4</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 5">
+      <div class="card-name">Grain 5</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 5">
+      <div class="card-name">Grain 6</div>
+    </div>    <div class="card">
+      <img src="/p2-1024x962.png" alt="Grain 5">
+      <div class="card-name">Grain 7</div>
+    </div>
+  </div>
+</div>
+
+<!-- Range of Spices Section -->
+<div class="scrollable-section">
+  <h2>Range of Spices</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Spice 1">
+      <div class="card-name">Spice 1</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Spice 2">
+      <div class="card-name">Spice 2</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Spice 3">
+      <div class="card-name">Spice 3</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Spice 4">
+      <div class="card-name">Spice 4</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Spice 5">
+      <div class="card-name">Spice 5</div>
+    </div>
+  </div>
+</div>
+<div class="landing-section">
+  <div class="text-container glass">
+    <h1>Welcome to Our KrushiDyog</h1>
+    <h2>Your One-Stop Shop for Quality Products</h2>
+    <h3>Discover the best deals and offers!</h3>
+  </div>
+  <img src="/p2-1024x962.png" alt="Welcome Image">
+</div>
+
+<!-- Second Section -->
+<div class="landing-section">
+  <img src="/p2-1024x962.png" alt="Welcome Image">
+  <div class="text-container glass">
+    <h2>Why KrushiDyog ?</h2>
+    <p>We offer a wide range of high-quality products at unbeatable prices. Our dedicated team ensures that you have the best shopping experience. Join our community and enjoy exclusive offers!</p>
+  </div>
+</div>
+<!-- Range of Pulses Section -->
+<div class="scrollable-section">
+  <h2>Range of Pulses</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Pulse 1">
+      <div class="card-name">Pulse 1</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Pulse 2">
+      <div class="card-name">Pulse 2</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Pulse 3">
+      <div class="card-name">Pulse 3</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Pulse 4">
+      <div class="card-name">Pulse 4</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Pulse 5">
+      <div class="card-name">Pulse 5</div>
+    </div>
+  </div>
+</div>
+
+<!-- Seasonal Section -->
+<div class="scrollable-section">
+  <h2>Seasonal Products</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Seasonal 1">
+      <div class="card-name">Seasonal 1</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Seasonal 2">
+      <div class="card-name">Seasonal 2</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Seasonal 3">
+      <div class="card-name">Seasonal 3</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Seasonal 4">
+      <div class="card-name">Seasonal 4</div>
+    </div>
+    <div class="card">
+      <img src="/p2-1024x962.png" alt="Seasonal 5">
+      <div class="card-name">Seasonal 5</div>
+    </div>
+  </div>
+</div>

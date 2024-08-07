@@ -1,0 +1,81 @@
+<% layout("/layouts/boilerplate") %>
+
+<%- include('./cart.ejs') %>
+
+<%- include('./wishlist.ejs') %>
+
+
+<style>
+    /* Custom styles for the past orders table */
+    h2 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .table-container {
+        max-height: 400px; /* Set a maximum height for the container */
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        border: 1px solid #dee2e6; /* Add a border around the table */
+        border-radius: 0.25rem; /* Rounded corners */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for better appearance */
+    }
+
+    .table {
+        min-width: 600px; /* Ensure the table has a minimum width */
+        margin-bottom: 0; /* Remove bottom margin */
+        border-collapse: collapse; /* Collapse borders */
+    }
+
+    .table th, .table td {
+        padding: 15px; /* Add padding for better spacing */
+        text-align: center; /* Center align text */
+        border: 1px solid #dee2e6; /* Add borders to cells */
+    }
+
+    .table thead {
+        background-color: #f8f9fa; /* Light background for the header */
+        position: sticky; /* Make the header sticky */
+        top: 0; /* Position sticky at the top */
+        z-index: 10; /* Ensure it stays above other content */
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background-color: #f2f2f2; /* Zebra striping for better readability */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e9ecef; /* Highlight row on hover */
+    }
+</style>
+
+<h2 class="text-center mt-4 mb-4">Past Orders</h2>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order Date</th>
+                <th>Delivery Date</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% pastOrders.forEach(order => { %>
+                <tr>
+                    <td><%= order.orderDate.toDateString() %></td>
+                    <td><%= order.deliveryDate ? order.deliveryDate.toDateString() : 'Pending' %></td>
+                    <% order.products.forEach(product => { %>
+                        <td><%= product.listingName %></td>
+                        <td><%= product.quantity %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.totalPrice %></td>
+                    <% }); %>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+<br><br><br>

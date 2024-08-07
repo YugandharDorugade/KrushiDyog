@@ -1,0 +1,67 @@
+<% layout("/layouts/boilerplate") %>
+<h3>Create New Product</h3>
+<div class="row">
+    <div class="col-8 offset-0.5">
+        <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-2">
+                <label for="title" class="form-label">Enter product name</label>
+                <input type="text" name="listing[title]" placeholder="title" class="form-control" required>
+            </div>
+            <div class="mb-2">
+                <label for="description" class="form-label">Enter details of product</label>
+                <textarea name="listing[description]" id="description" cols="20" rows="5" class="form-control" required></textarea>
+            </div>
+            <div class="mb-2">
+                <label for="weight" class="form-label">What is the weight of packaging</label>
+                <input type="number" name="listing[weight]" placeholder="weight" class="form-control" required>
+            </div>
+            <div class="mb-2">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="listing[price]" placeholder="price" class="form-control" required>
+            </div>
+            <div class="mb-2">
+                <label for="origin" class="form-label">Origin</label>
+                <input type="text" name="listing[origin]" placeholder="origin" class="form-control" required>
+            </div>
+            <div class="mb-2">
+                <label for="images" class="form-label">Upload Images</label>
+                <input type="file" name="listing[images]" class="form-control" multiple>
+                <small class="form-text text-muted">You can upload multiple images at once.</small>
+            </div>
+            <div class="mb-2">
+                <label for="categories" class="form-label">Select Categories</label>
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Grains" id="grains">
+                    <label for="grains">Grains</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Pulses" id="pulses">
+                    <label for="pulses">Pulses</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Fruits" id="fruits">
+                    <label for="fruits">Fruits</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Vegetables" id="vegetables">
+                    <label for="vegetables">Vegetables</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Dairy" id="dairy">
+                    <label for="dairy">Dairy</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Spices" id="spices">
+                    <label for="spices">Spices</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="listing[categories][]" value="Other" id="other">
+                    <label for="other">Other</label>
+                </div>
+                <small class="form-text text-muted">Select one or more categories.</small>
+            </div>
+            <button type="submit" class="btn btn-success" id="addbtn">Add</button>
+        </form>
+    </div>
+</div>

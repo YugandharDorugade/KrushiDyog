@@ -1,0 +1,85 @@
+<% layout("/layouts/boilerplate") %>
+<h3>More about <%= listing.title %></h3>
+<div class="row mt-3">
+    <div class="col-6 offset-2">
+        <div class="card col">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <% if (listing.images && listing.images.length > 0) { %>
+                        <% listing.images.forEach((image, index) => { %>
+                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                <img src="<%= image.url %>" class="d-block show-img" alt="listing_image">
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div class="carousel-item active">
+                            <img src="https://via.placeholder.com/800x400" class="d-block show-img" alt="default_image">
+                        </div>
+                    <% } %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= listing.title %></h5>
+                <p class="card-text">
+                    <strong>Price:</strong> &#8377;<%= listing.price.toLocaleString("en-IN") %> /5KG<br>
+                    <strong>Description:</strong> <%= listing.description %><br>
+                    <strong>Weight:</strong> <%= listing.weight %> kg<br>
+                    <strong>Origin:</strong> <%= listing.origin %><br>
+                    <strong>Owned By:</strong> <%= listing.owner.username %><br>
+
+                    <div class="d-flex align-items-center mt-2">
+                        <% if (curruser) { %>
+                            <form action="/cart/add" method="POST" class="me-2">
+                                <input type="hidden" name="listingId" value="<%= listing._id %>">
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                            <form action="/wishlist/add" method="POST" class="me-2">
+                                <input type="hidden" name="listingId" value="<%= listing._id %>">
+                                <button type="submit" class="btn btn-primary">
+                                    wishlist
+                                </button>
+                                
+                            </form>
+                        <% } else { %>
+                            <form action="/login" method="GET" class="me-2">
+                                <input type="hidden" name="redirect" value="/listings/<%= listing._id %>">
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                            <form action="/login" method="GET" class="me-2">
+                                <input type="hidden" name="redirect" value="/listings/<%= listing._id %>">
+                                <button type="submit" class="btn btn-primary">
+                                    wishlist
+                                </button>
+                                
+                            </form>
+                        <% } %>
+                    </div>
+                    <br>
+                    <% if (curruser && curruser._id.equals(listing.owner._id)) { %>
+                        <div class="btnforupdate">
+                            <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a><br><br>
+                            <form action="/listings/<%= listing._id %>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                    
+                    <hr>
+                    <%- include('render_review', { listing: listing, curruser: curruser }) %>
+                    
+                    <% if (curruser) { %>
+                        <%- include('leave_review', { listing: listing }) %>
+                    <% } %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

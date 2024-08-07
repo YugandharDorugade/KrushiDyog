@@ -1,0 +1,71 @@
+/* Original Navbar */
+.navbar {
+    height: 3.5rem; /* Fixed height */
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%; /* Ensure navbar takes the full width */
+    z-index: 1000; /* Keep it above other content */
+
+}
+
+  
+
+.navbar .fa-wheat-awn {
+    color: green;
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 1rem;
+    position: relative;
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    text-shadow: 0 0 8px rgb(42, 214, 42); /* Greenish illumination effect */
+}
+
+.navbar-toggler {
+    border: none; /* Remove border for a cleaner look */
+}
+
+.navbar-toggler-icon {
+    background-color: #fff; /* Ensure a visible toggle icon */
+}
+
+.navbar-nav.ms-auto {
+    margin-left: auto; /* Aligns the navigation items to the right */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    border-radius: 50px; /* Make the search box curved */
+    width: 700px; /* Increase the width of the search box */
+    min-width: 300px; /* Prevent too narrow widths */
+}
+
+.btn-outline-success {
+    color: #28a745; /* Green color for text */
+    border-color: #28a745; /* Green color for border */
+}
+
+/* Adjust positioning of the search bar */
+.search-container {
+    flex-grow: 1; /* Allow the search container to grow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -200px; /* Adjust if necessary, may cause layout issues */
+}

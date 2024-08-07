@@ -1,0 +1,184 @@
+<% layout("/layouts/boilerplate") %>
+
+<h2>Place Your Order for All Items in Cart</h2>
+
+<div class="cart-container">
+    <h3 class="text-center mb-4">Shopping Cart</h3>
+
+    <% if (cart && cart.items.length > 0) { %>
+        <% cart.items.forEach(item => { %> 
+            <div class="cart-item">
+                <img src="<%= item.listingId.images[0].url %>" alt="<%= item.listingId.title %>">
+                <div class="cart-item-details">
+                    <h5><%= item.listingId.title %></h5>
+                    <p>Quantity: <%= item.quantity %></p>
+                    <p>Price per Item: $<%= item.price %></p>
+                    <p>Total Price: $<%= item.totalPrice %></p>
+                </div>
+            </div>
+        <% }); %>
+
+        <div class="grand-total">
+            <strong>Grand Total: $<%= cart.grandTotal %></strong>
+        </div>
+    <% } else { %>
+        <p class="text-center">Your cart is empty.</p>
+    <% } %>
+</div>
+
+<h3>Delivery Information</h3>
+<form action="/cart/placeCart" method="POST" class="order-form">
+    <% if (cart && cart.items.length > 0) { %>
+        <div class="address-fields">
+            <div class="field-container">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required class="form-input" />
+            </div>
+            
+            <div class="field-container">
+                <label for="district">District/City:</label>
+                <input type="text" id="district" name="district" required class="form-input" />
+            </div>
+
+            <div class="field-container">
+                <label for="taluka">Taluka:</label>
+                <input type="text" id="taluka" name="taluka" required class="form-input" />
+            </div>
+        </div>
+
+        <div class="field-container">
+            <label for="building">Building/Flat Name:</label>
+            <input type="text" id="building" name="building" required class="form-input" />
+        </div>
+
+        <div class="field-container">
+            <label for="pin">PIN Code:</label>
+            <input type="text" id="pin" name="pin" required class="form-input" />
+        </div>
+
+        <div class="field-container">
+            <label for="phone">Mobile Number:</label>
+            <input type="tel" id="phone" name="phone" required class="form-input" />
+        </div>
+
+        <h3>Payment Options</h3>
+        <div class="payment-options">
+            <label>
+                <input type="radio" name="paymentMethod" value="COD" required /> Cash on Delivery
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="netBanking" required /> Net Banking
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="upi" required /> UPI
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="card" required /> Card
+            </label>
+        </div>
+
+        <button type="submit" class="submit-button">Submit Order</button>
+    <% } %>
+</form>
+
+<!-- CSS Styles -->
+<style>
+    .cart-container {
+        max-width: 800px; /* Set maximum width for the cart */
+        margin: auto; /* Center the cart */
+        padding: 20px; /* Add padding around the container */
+        border: 2px solid black;
+        max-height: 400px; /* Set a maximum height for the cart */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .cart-item {
+        display: flex; /* Use flexbox for item layout */
+        align-items: center; /* Center items vertically */
+        border: 1px solid #dee2e6; /* Border around each item */
+        border-radius: 0.25rem; /* Rounded corners */
+        padding: 15px; /* Padding inside each item */
+        margin-bottom: 20px; /* Space between items */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for better appearance */
+    }
+
+    .cart-item img {
+        width: 70px; /* Set width for product images */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 20px; /* Space between image and text */
+    }
+
+    .cart-item-details {
+        flex-grow: 1; /* Allow details to take up remaining space */
+    }
+
+    .cart-item h5 {
+        margin: 0; /* Remove default margin */
+        font-size: 18px; /* Set font size */
+    }
+
+    .cart-item p {
+        margin: 5px 0; /* Space above and below paragraph */
+    }
+
+    .grand-total {
+        text-align: right; /* Align grand total to the right */
+        font-size: 20px; /* Increase font size */
+        margin-top: 20px; /* Space above grand total */
+    }
+
+    .order-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Spacing between elements */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+    }
+
+    .form-input:focus {
+        border-color: #007bff;
+        outline: none; /* Remove default outline */
+    }
+
+    .address-fields {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px; /* Spacing between address fields */
+    }
+
+    .field-container {
+        flex: 1 1 30%; /* Adjusts width to fit in a row */
+    }
+
+    .payment-options {
+        margin: 10px 0;
+    }
+
+    .submit-button {
+        padding: 15px 25px;
+        background-color: #28a745; /* Bootstrap success color */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .submit-button:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+</style>
