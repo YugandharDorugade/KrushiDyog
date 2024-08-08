@@ -23,7 +23,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Grains", "Cooking"]
   },
   {
@@ -50,7 +50,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Spices", "Organic"]
   },
   {
@@ -77,7 +77,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Dairy", "Organic Cosmetics"]
   },
   {
@@ -104,7 +104,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Organic Cosmetics", "Fruits"]
   },
   {
@@ -131,7 +131,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Fruits", "Cooking"]
   },
   {
@@ -158,7 +158,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Vegetables", "Seasonal"]
   },
   {
@@ -185,7 +185,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Trending", "Dairy"]
   },
   {
@@ -212,7 +212,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Seasonal", "Grains"]
   },
   {
@@ -239,7 +239,7 @@ const sampleListings = [
       }
     ],
     origin: "Ajara",
-    owner: "66b3e3e2118bcb06f1afaa0a",
+    owner: "replace with your id",
     categories: ["Organic", "Grains"]
   }
 ];

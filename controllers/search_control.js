@@ -1,4 +1,5 @@
 const Listing = require("../models/listing");
+const User = require("../models/user");
 
 module.exports.search = async (req, res) => {
     try {
@@ -14,10 +15,10 @@ module.exports.search = async (req, res) => {
         }
 
         // Fetch the listings based on the constructed query
-        let listings = await Listing.find(query);
+        let listings = await Listing.find(query).populate('owner');
 
         // Render the search results with the filtered listings
-        return res.render("listings/searchresults", { listings, title, category });
+        return res.render("listings/searchresults", { listings, title, category  });
     } catch (err) {
         console.error(err);
         return res.status(500).send("Server Error"); // Handle errors properly
